@@ -211,14 +211,14 @@
 								<br/>
 							 	<div class="form-group form-group-sm">
 									<label class="col-sm-8 control-label" for="regarbeitgeber">*bisherige(r) Arbeitgeber</label>
-									<div class="col-sm-12">
+									<div class="col-sm-11">
 										<textarea name="arbeitgeber" id="regarbeitgeber" class="form-control" rows="3"><?php if(isset($_POST['arbeitgeber']))echo @$_POST['arbeitgeber']; ?></textarea>
 									</div>
 								</div>
 								<br/>
 							 	<div class="form-group form-group-sm">
-									<label class="col-sm-7 control-label" for="reglehre">*Ausbildung/Lehre</label>
-									<div class="col-sm-12">
+									<label class="col-sm-8 control-label" for="reglehre">*Ausbildung/Lehre</label>
+									<div class="col-sm-11">
 										<textarea name="ausbildung"  id="reglehre" class="form-control" rows="3"><?php if(isset($_POST['ausbildung']))echo @$_POST['ausbildung']; ?></textarea>
 									</div>
 								</div>

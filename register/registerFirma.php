@@ -108,15 +108,15 @@
 								</div>
 							</div>
 							<div class="form-group form-group-sm">
-								<label class="col-sm-8 control-label" for="regdienst">*Beschreibung der Dienstleistungen</label>
-								<div class="col-sm-12">
+								<label class="col-sm-9 control-label" for="regdienst">*Beschreibung der Dienstleistungen</label>
+								<div class="col-sm-11">
 									<textarea name="dienstleistungen" id="regdienst" class="form-control" rows="3"><?php if(isset($_POST['dienstleistungen']))echo @$_POST['dienstleistungen']; ?> </textarea>
 								</div>
 							</div>
 							<br>
 							<div class="form-group form-group-sm">
-								<label class="col-sm-8 control-label" for="regsuchenach">*Auf der Suche nach...</label>
-								<div class="col-sm-12">
+								<label class="col-sm-9 control-label" for="regsuchenach">*Auf der Suche nach...</label>
+								<div class="col-sm-11">
 									<textarea name="suchenach" id="regsuchenach" class="form-control" rows="3"><?php if(isset($_POST['suchenach']))echo @$_POST['suchenach']; ?></textarea>
 								</div>
 							</div>
