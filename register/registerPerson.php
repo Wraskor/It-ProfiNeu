@@ -92,7 +92,7 @@
 					<div class="register-box">
 						<h2>Register <small> Please Register or <a href="../login/login.php">login</a></small></h2>
 						<br/>												<!--Muss noch zu register.php#/person geleitet werden -->
-						<form class="form-horizontal" role="form" action="<?= $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data" accept-charset="utf-8">
+						<form class="form-horizontal" role="form" action="register.php" method="POST" enctype="multipart/form-data" accept-charset="utf-8">
 								
 								<strong class="col-sm-3 control-label">*Anrede</strong <?php if (isset($errors['anrede'])) echo 'class="has-error" ';?>>
 								<label class="radio-inline"> 
@@ -171,6 +171,29 @@
 								<div class="col-sm-9">
 									<input type="file" name="profileimg" id="regbild" placeholder="Name" <?php if(count($_POST) > 0) if($_POST['profileimg'] != '') echo 'value="' . $_POST['profileimg'] . '" '; else echo 'class="has-error" ';?> />
 									<p class="help-block">Bitte Passfoto Oder Bild Ihres Gesichtes max ...x....</p>
+								<?php
+									$dateityp = @GetImageSize($_FILES['profileimg']['tmp_name']);
+										if($dateityp[2] != 0)
+										   {
+
+										   if($_FILES['profileimg']['size'] <  102400)
+										      {
+										      move_uploaded_file($_FILES['profileimg']['tmp_name'], "upload/".$_FILES['datei']['name']['vorname']);
+										      echo "Das Bild wurde Erfolgreich nach upload/".$_FILES['profileimg']['name']." hochgeladen";
+										      }
+
+										   else
+										      {
+										         $errors ['profileimg'] = "Das Bild darf nicht größer als 100 kb sein";
+										      }
+
+										    }
+
+										else
+										    {
+										    	$errors ['profileimg'] =  "Bitte nur Bilder im Gif bzw. jpg Format hochladen";
+										    }
+						 		?>
 								</div>
 							</div>
 							<br/>
@@ -244,7 +267,8 @@
 				if(count($errors) == 0 && count($_POST) > 0){
 					
 					$anrede = $_POST['anrede'];
-					//$profileimg = $_POST['profileimg'];
+					
+
 					$name = $_POST['name'];
 					$vorname = $_POST['vorname'];
 					$bday = $_POST['bday'];
