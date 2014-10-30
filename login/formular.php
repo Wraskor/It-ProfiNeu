@@ -4,8 +4,8 @@
   <head>
     <title>IT-Profi</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../login/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="../login/css/main.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/main.css">
 
   </head>
   <body class="login">
