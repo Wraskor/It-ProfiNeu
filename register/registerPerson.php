@@ -85,14 +85,32 @@
 			if (count($_POST) == 0 || count($errors) > 0){
 		
 		?>
-
-
-		
-					
+<html>
+<!-- Registrierung Seite ohne Inhalt -->
+	<head>
+		<title>IT-Profi</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+		<link rel="stylesheet" href="../css/main.css">
+	</head>
+	
+	<body class="register">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3 ">
+					<div class="title">
+						<h1>IT-Profi</h1>
+					</div>
+					<div>
+					<ul class="nav nav-tabs nav Justified" role="tablist">
+						<li class="active"><a href="#">Einzelperson</a></li> 
+						<li><a href="registerFirma.php">Firma</a></li>
+					</ul>
+					</div>					
 					<div class="register-box">
 						<h2>Register <small> Please Register or <a href="../login/login.php">login</a></small></h2>
 						<br/>												<!--Muss noch zu register.php#/person geleitet werden -->
-						<form class="form-horizontal" role="form" action="register.php" method="POST" enctype="multipart/form-data" accept-charset="utf-8">
+						<form class="form-horizontal" role="form" action="<?= $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data" accept-charset="utf-8">
 								
 								<strong class="col-sm-3 control-label">*Anrede</strong <?php if (isset($errors['anrede'])) echo 'class="has-error" ';?>>
 								<label class="radio-inline"> 
@@ -243,6 +261,15 @@
 							
 						</form>
 					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	
+ 	 <script src="../bootstrap/js/bootstrap.js"></script>
+ 	 <script src="../javascript/app.js"></script>
+ 
+</html>
 		
 
 			<?php

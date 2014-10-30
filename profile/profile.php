@@ -12,25 +12,13 @@
 
 
 		<?php
-
-			// Session starten
-			session_start ();
-
 			// Systemeinstellungen 
 			$id = "root"; 
 			$pw = ""; 
 			$host = "localhost"; 
 			$database = "itprofi"; 
-			$table = '';
-			
-			if($_SESSION['user_typ'] == 'person'){
+			$table = "register_personal"; 
 
-				$table = "register_personal"; 
-
-			}elseif($_SESSION['user_typ'] == 'company'){
-
-				$table = "register_company"; 
-			}
 			// Connection
 			$conn_id = mysql_connect($host,$id,$pw); 
 			if(!mysql_select_db($database,$conn_id))
@@ -41,7 +29,7 @@
 			// query machen und anzeigen
 			$sql = 'SELECT * 
 					FROM  ' . $table .
-					' WHERE EMail LIKE "' . $_SESSION['user_email'] . '";';
+					' WHERE EMail LIKE "anastasia.cora@gmail.com";';
 			$result = mysql_query($sql);
 			while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
 				echo "<br>";
@@ -58,9 +46,6 @@
 				echo "Arbeitgeber: " . $row['Arbeitgeber'] . "<br>";
 				echo "Ausbildung: " . $row['Ausbildung'] . "<br>";
 				echo "Student: " . $row['Student'] . "<br>";
-				if($row == false){
-					break;
-				}
 			}
 			mysql_close($conn_id);
 		?>
