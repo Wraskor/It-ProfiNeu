@@ -22,7 +22,7 @@
             <h1>IT-Profi</h1>
           </div>
           <div class="login-box">
-            <h2>Login <small> Please login first or <a href="./register/register.php">register</a></h2>
+            <h2>Login <small> Please login first or <a href="../register/register.php">register</a></h2>
             <br/>
             <form action="login.php" method="POST" role="form">
               <div class="form-group">
