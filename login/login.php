@@ -1,16 +1,16 @@
 <?php
 // Session starten
 session_start ();
- 
+  
 // Datenbankverbindung aufbauen
 $connectionid = mysql_connect ("localhost", "root", "");
 if (!mysql_select_db ("ItProfi", $connectionid))
 {
   die ("Keine Verbindung zur Datenbank");
 }
- 
+  
 $sql = "SELECT ".
-    "Id, EMail ".
+    "Id, EMail, ProfilTyp ".
   "FROM ".
     "login ".
   "WHERE ".
@@ -21,11 +21,12 @@ if (mysql_num_rows ($result) > 0)
 {
   // login in ein Array auslesen.
   $data = mysql_fetch_array ($result);
- 
+  
   // Sessionvariablen erstellen und registrieren
   $_SESSION["user_id"] = $data["Id"];
   $_SESSION["user_email"] = $data["EMail"];
- 
+  $_SESSION["user_typ"] = $data["ProfilTyp"];
+  
   header ("Location: intern.php");
 }
 else
