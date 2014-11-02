@@ -1,36 +1,101 @@
-<h1>Suche nach Firma</h1>
-<a href="search_person.php">nach Person suchen...</a>
-<br/>
-<a href="search_company.php">nach Firma suchen...</a>
-<?php
+<html DOCTYPE!>
+	<head>
+		<title>It-Profi</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+		<link rel="stylesheet" href="../css/main.css">
+		<link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css'>
+	</head>
+	<body>
+		<div class="container">
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			      <a class="navbar-brand" href="#">IT-Profi</a>
+			    </div>
 
-if(!isset($_GET['search'])){
-?>
-	<form action="<?=$_SERVER['PHP_SELF']?>" method="get">
-		
-		<label>
-			<p>Name der Firma:</p>
-			<input type="text" name="search_name" />
-		</label>
-		<br/>
-		<label>
-			<p>Dienstleistungen</p>
-			<input type="text" name="search_dienstleistungen" />
-		</label>
-		<br/>
-		<label>
-			<p>auf der Suche nach...</p>
-			<input type="text" name="search_suchenach" />
-		</label>
-		<br/>
-			
-		<!--<input type="hidden" name="seite" value="<?=$_GET['seite']?>">-->
-		
-		<br/>
-		
-		<input class="button" type="submit" name="search" value="Suche"/>
-		
-	</form>
+			    <!-- Collect the nav links, forms, and other content for toggling -->
+			    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+			      <ul class="nav navbar-nav">
+			        <!--<li class="active"><a href="#">Link</a></li>
+			        <li><a href="#">Link</a></li>
+			      	-->
+			      </ul>
+			    </div><!-- /.navbar-collapse -->
+			  </div><!-- /.container-fluid -->
+			</nav>
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-3 col-md-offset-">
+							<ul class="nav nav-pills nav-stacked poop">
+	 							<li><a href="search_person.php">nach Person suchen...</a></li>
+					        	<li class="active"><a href="#">nach Firma suchen...</a></li>
+					        	
+							</ul>
+						</div>
+						<div class="col-md-8">
+							<h1>Suche nach Firma</h1>
+							<?php
+
+								if(!isset($_GET['search'])){
+								?>
+									<form class="form-horizontal" role="form" action="<?=$_SERVER['PHP_SELF']?>" method="get">
+										
+										<div class="form-group form-group-sm">
+											<label class="col-sm-3 control-label" for="sefirma">Name der Firma</label> 
+												<div class="col-sm-9">
+													<input type="text" name="search_name" id="sefirma"/>
+												</div>
+										</div>
+										<div class="form-group form-group-sm">
+											<label class="col-sm-3 control-label" for="sedienstleistung">Dienstleistungen</label> 
+												<div class="col-sm-9">
+													<input type="text" name="search_dienstleistungen" id="sedienstleistung"/>
+												</div>
+										</div>
+										<br/>
+										<div class="form-group form-group-sm">
+											<label class="col-sm-3 control-label" for="sesuchenach">auf der Suche nach...</label> 
+												<div class="col-sm-9">
+													<input type="text" name="search_suchenach" id="sesuchenach"/>
+												</div>
+										</div>
+										
+										<!--<input type="hidden" name="seite" value="<?=$_GET['seite']?>">-->
+										
+										<br/>
+										
+										<input class="btn btn-default button" type="submit" name="search" value="Suche"/>
+										
+									</form>
+							
+						</div>	
+					</div>
+				</div>
+			</div>
+			<br/>
+			<div class="footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<a href="http://twitter.com/minimalmonkey" class="icon-button twitter"><i class="icon-twitter"></i><span></span></a>
+							<a href="http://facebook.com" class="icon-button facebook"><i class="icon-facebook"></i><span></span></a>
+							<a href="http://plus.google.com" class="icon-button google-plus"><i class="icon-google-plus"></i><span></span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
 
 <?php }else{
 	echo '<h2>Suchkriterien:</h2>';

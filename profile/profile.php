@@ -93,6 +93,7 @@
 										<li>
 											Anrede
 										</li>
+										<br/>
 										<li>
 											Name
 										</li>
@@ -107,10 +108,6 @@
 										<br/>
 										<li>
 											Nationalität
-										</li>
-										<br/>
-										<li>
-											Email
 										</li>
 										<br/>
 										<li>
@@ -130,10 +127,6 @@
 										</li>
 										<br/>
 										<li>
-											Geburtstag
-										</li>
-										<br/>
-										<li>
 											Student
 										</li>	
 									</ul>
@@ -142,29 +135,56 @@
 									<ul class="list-unstyled">
 										<?php
 											while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
-												echo "<br>";
-												echo $row['Anrede'] . "<br>";
-												echo $row['Nachname'] . "<br>";
-												echo "<li>".$row['Vorname'] . "</li><br>";
-												echo "Geburtsdatum: " . $row['Geburtsdatum'] . "<br>";
-												echo "Nationalität: " . $row['Nationalitaet'] . "<br>";
-												echo "Telefon: " . $row['Telefon'] . "<br><br>";
-												echo "Strasse: " . $row['Strasse'] . "<br>";
-												echo "PLZ: " . $row['PLZ'] . "<br>";
-												echo "Ort: " . $row['Ort'] . "<br><br><br>";
-												echo "Berufsbezeichnung: " . $row['Berufsbezeichnung'] . "<br>";
-												echo "Arbeitgeber: " . $row['Arbeitgeber'] . "<br>";
-												echo "Ausbildung: " . $row['Ausbildung'] . "<br>";
-												echo "Student: " . $row['Student'] . "<br>";
+												echo "<li>" . $row['Anrede'] . "</li><br/>";
+												echo "<li>" . $row['Nachname'] . "</li><br/>";
+												echo "<li>" . $row['Vorname'] . "</li><br/>";
+												echo "<li>" . $row['Geburtsdatum'] . "</li><br/>";
+												echo "<li>" . $row['Nationalitaet'] . "</li><br/>";
+												echo "<li>" . $row['Telefon'] . "</li><br/>";
+												echo "<li>" . $row['Strasse'] . "</li><br/>";
+												echo "<li>" . $row['PLZ'] . "</li><br/>";
+												echo "<li>" . $row['Ort'] . "</li><br/>";
+												
+												echo "<li>" . $row['Student'] . "</li><br>";
 												if($row == false){
 													break;
 												}
 											}
-											mysql_close($conn_id);
+											
 										?>
-										<li>
-											<span class="glyphicon glyphicon-ok"></span>
-										</li>
+										<?php
+
+											// Session starten
+											session_start ();
+
+											// Systemeinstellungen 
+											$id = "root"; 
+											$pw = ""; 
+											$host = "localhost"; 
+											$database = "itprofi"; 
+											$table = '';
+											
+											if($_SESSION['user_typ'] == 'person'){
+
+												$table = "register_personal"; 
+
+											}elseif($_SESSION['user_typ'] == 'company'){
+
+												$table = "register_company"; 
+											}
+											// Connection
+											$conn_id = mysql_connect($host,$id,$pw); 
+											if(!mysql_select_db($database,$conn_id))
+											{
+											  die('Could not connect: ' . mysql_error());
+											}
+
+											// query machen und anzeigen
+											$sql = 'SELECT * 
+													FROM  ' . $table .
+													' WHERE EMail LIKE "' . $_SESSION['user_email'] . '";';
+											$result = mysql_query($sql); 
+											?>
 									</ul>
 								</div>
 								<br/>
@@ -173,14 +193,20 @@
 								<div class="col-md-10">
 									<h3>Berufsspezifischeinformationen</h3>
 									<br/>
-									<h5>Berufsbezeichnung</h5>
-									<p>Informatiker Applikationsentwickler</p>
-									<h5>Bisherige(r) Arbeitgeber</h5>
-									<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-									<br/>
-									<h5>Ausbildung/Lehre</h5>
-									<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-									
+									<?php
+											while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
+												echo "<h5>Berufsbezeichnung</h5>";
+												echo "<p>" . $row['Berufsbezeichnung'] . "</p><br/>";
+												echo "<h5>Bisherige(r) Arbeitgeber</h5>";
+												echo "<p>" . $row['Arbeitgeber'] . "</p><br/>";
+												echo "<h5>Ausbildung/Lehre</h5>";
+												echo "<p>" . $row['Ausbildung'] . "</p>";
+												if($row == false){
+													break;
+												}
+											}
+											mysql_close($conn_id);
+										?>
 								</div>
 							</div>
 						</div>	
