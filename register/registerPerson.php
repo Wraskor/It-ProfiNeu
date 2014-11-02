@@ -189,29 +189,7 @@
 								<div class="col-sm-9">
 									<input type="file" name="profileimg" id="regbild" placeholder="Name" <?php if(count($_POST) > 0) if($_POST['profileimg'] != '') echo 'value="' . $_POST['profileimg'] . '" '; else echo 'class="has-error" ';?> />
 									<p class="help-block">Bitte Passfoto Oder Bild Ihres Gesichtes max ...x....</p>
-								<?php/*
-									$dateityp = @GetImageSize($_FILES['profileimg']['tmp_name']);
-										if($dateityp[2] != 0)
-										   {
-
-										   if($_FILES['profileimg']['size'] <  102400)
-										      {
-										      move_uploaded_file($_FILES['profileimg']['tmp_name'], "upload/".$_FILES['datei']['name']['vorname']);
-										      echo "Das Bild wurde Erfolgreich nach upload/".$_FILES['profileimg']['name']." hochgeladen";
-										      }
-
-										   else
-										      {
-										         $errors ['profileimg'] = "Das Bild darf nicht größer als 100 kb sein";
-										      }
-
-										    }
-
-										else
-										    {
-										    	$errors ['profileimg'] =  "Bitte nur Bilder im Gif bzw. jpg Format hochladen";
-										    }
-						 		*/?>
+								
 								</div>
 							</div>
 							<br/>
@@ -274,7 +252,28 @@
 
 			<?php
 				if(count($errors) > 0){
-					
+					$dateityp = @GetImageSize($_FILES['profileimg']['tmp_name']);
+						if($dateityp[2] != 0)
+						   {
+
+						   if($_FILES['profileimg']['size'] <  102400)
+						      {
+						      move_uploaded_file($_FILES['profileimg']['tmp_name'], "upload/".$_FILES['profileimg']['name']['vorname']);
+						      echo "Das Bild wurde Erfolgreich nach upload/".$_FILES['profileimg']['name']." hochgeladen";
+						      }
+
+						   else
+						      {
+						         $errors ['profileimg'] = "Das Bild darf nicht größer als 100 kb sein";
+						      }
+
+						    }
+
+						else
+						    {
+						    	$errors ['profileimg'] =  "Bitte nur Bilder im Gif bzw. jpg Format hochladen";
+						    }
+
 					echo '<h3 class="has-error" >Um das Formular korrekt abzusenden: </h3>';
 					
 					foreach ($errors as $error){
