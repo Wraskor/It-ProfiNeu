@@ -9,12 +9,7 @@
 
   </head>
   <body class="login">
-  	<?php 
-			if (isset ($_REQUEST["fehler"])) 
-			{ 
-			  echo "Die Zugangsdaten waren ungültig."; 
-			} 
-		?> 
+  	 
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
@@ -31,12 +26,14 @@
               </div>
               <div class="form-group">
                 <label class="label-control" for="loginPassword">Password</label>
-                <input type="password" class="form-control" id="loginPassword" name="pdw" placeholder="Password">
+                <input type="password" class="form-control" id="loginPassword" name="pwd" placeholder="Password">
               </div>
-                <label>
-                  <input type="checkbox"> Check me out
-                </label>
-                <br/>
+                <?php 
+                  if (isset ($_REQUEST["fehler"])) 
+                  { 
+                    echo "<p>Die Zugangsdaten waren ungültig.</p>"; 
+                  } 
+                ?>
               <button type="submit" class="btn btn-default">Submit</button>
             </form>
           </div>

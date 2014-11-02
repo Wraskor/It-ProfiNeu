@@ -100,13 +100,13 @@
 							<div class="form-group form-group-sm">
 								<label class="col-sm-3 control-label" for="regfplz">*PLZ</label>
 								<div class="col-sm-9">
-									<input type="text" name="plz" id="regfplz" placeholder="Zürich" <?php if(count($_POST) > 0) if($_POST['plz'] != '') echo 'value="' . $_POST['plz'] . '" '; else echo 'class="has-error" ';?> />
+									<input type="text" name="plz" id="regfplz" placeholder="8400" <?php if(count($_POST) > 0) if($_POST['plz'] != '') echo 'value="' . $_POST['plz'] . '" '; else echo 'class="has-error" ';?> />
 								</div>
 							</div>
 							<div class="form-group form-group-sm">
 								<label class="col-sm-3 control-label" for="regfort">*Ort</label>
 								<div class="col-sm-9">
-									<input type="text" name="ort" id="regfort" placeholder="8004" <?php if(count($_POST) > 0) if($_POST['ort'] != '') echo 'value="' . $_POST['ort'] . '" '; else echo 'class="has-error" ';?> />
+									<input type="text" name="ort" id="regfort" placeholder="Winterthur" <?php if(count($_POST) > 0) if($_POST['ort'] != '') echo 'value="' . $_POST['ort'] . '" '; else echo 'class="has-error" ';?> />
 								</div>
 							</div>
 							<div class="form-group form-group-sm">
@@ -215,11 +215,16 @@
 					mysql_query($sql_reg);
 					$table = "login"; 
 					$sql_log = "INSERT INTO ".
-							$table . "(EMail, Kennwort) " .
+							$table . "(EMail, Kennwort, ProfilTyp) " .
 							"VALUES('".$email."', '". 
-										md5($password). "')"; 
+										md5($password)."', '".
+										'company'. "')"; 
 					mysql_query($sql_log);
-					echo "Bestaetigung";
+					session_start ();
+					$_SESSION["user_id"] = 'none';
+					$_SESSION["user_email"] = $email;
+					$_SESSION["user_typ"] = 'company';
+					include ("../login/intern.php"); 
 
 				}	
 			?>		

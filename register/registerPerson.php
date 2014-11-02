@@ -175,13 +175,13 @@
 							<div class="form-group form-group-sm">
 								<label class="col-sm-3 control-label" for="regplz">*PLZ</label>
 								<div class="col-sm-9">
-									<input type="text" name="plz" id="regplz" placeholder="Zürich" <?php if(count($_POST) > 0) if($_POST['plz'] != '') echo 'value="' . $_POST['plz'] . '" '; else echo 'class="has-error" ';?> />
+									<input type="text" name="plz" id="regplz" placeholder="8400" <?php if(count($_POST) > 0) if($_POST['plz'] != '') echo 'value="' . $_POST['plz'] . '" '; else echo 'class="has-error" ';?> />
 								</div>
 							</div>
 							<div class="form-group form-group-sm">
 								<label class="col-sm-3 control-label" for="regort">*Ort</label>
 								<div class="col-sm-9">
-									<input type="text" name="ort" id="regort" placeholder="8004" <?php if(count($_POST) > 0) if($_POST['ort'] != '') echo 'value="' . $_POST['ort'] . '" '; else echo 'class="has-error" ';?> />
+									<input type="text" name="ort" id="regort" placeholder="Winterthur" <?php if(count($_POST) > 0) if($_POST['ort'] != '') echo 'value="' . $_POST['ort'] . '" '; else echo 'class="has-error" ';?> />
 								</div>
 							</div>
 							<div class="form-group form-group-sm">
@@ -189,7 +189,7 @@
 								<div class="col-sm-9">
 									<input type="file" name="profileimg" id="regbild" placeholder="Name" <?php if(count($_POST) > 0) if($_POST['profileimg'] != '') echo 'value="' . $_POST['profileimg'] . '" '; else echo 'class="has-error" ';?> />
 									<p class="help-block">Bitte Passfoto Oder Bild Ihres Gesichtes max ...x....</p>
-								<?php
+								<?php/*
 									$dateityp = @GetImageSize($_FILES['profileimg']['tmp_name']);
 										if($dateityp[2] != 0)
 										   {
@@ -211,7 +211,7 @@
 										    {
 										    	$errors ['profileimg'] =  "Bitte nur Bilder im Gif bzw. jpg Format hochladen";
 										    }
-						 		?>
+						 		*/?>
 								</div>
 							</div>
 							<br/>
@@ -332,7 +332,7 @@
 										$bday."', '". 
 										$nationality."', '". 
 										$email."', '". 
-										md5($passwort)."', '". 
+										md5($password)."', '". 
 										$tel."', '". 
 										$strasse."', '". 
 										$plz."', '". 
@@ -342,8 +342,18 @@
 										$ausbildung."', '". 
 										$student. "')"; 
 					mysql_query($sql);
-
-					echo "Bestaetigung";
+					$table = "login"; 
+					$sql_log = "INSERT INTO ".
+							$table . "(EMail, Kennwort, ProfilTyp) " .
+							"VALUES('".$email."', '". 
+										md5($password)."', '".
+										'person'. "')"; 
+					mysql_query($sql_log);
+					session_start ();
+					$_SESSION["user_id"] = 'none';
+					$_SESSION["user_email"] = $email;
+					$_SESSION["user_typ"] = 'person';
+					include ("../login/intern.php"); 
 
 				}	
 			?>		
