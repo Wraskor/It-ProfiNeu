@@ -72,6 +72,7 @@
 			    </div><!-- /.navbar-collapse -->
 			  </div><!-- /.container-fluid -->
 			</nav>
+
 			<div class="content">
 				<div class="container-fluid">
 					<div class="row">
@@ -83,7 +84,9 @@
 							</ul>
 						</div>
 						<div class="col-md-8">
-							<h1>It-Profi</h1>
+							<h1>Profil</h1>
+
+						<?php if($_SESSION['user_typ'] == 'person'){ ?>
 							<div class="profile">
 								<div class="col-md-12">
 									<img src="../platzhalter-passfoto.gif" class="img-responsive pull-right" alt="Responsive image">
@@ -103,6 +106,10 @@
 										</li>
 										<br/>
 										<li>
+											E-Mail
+										</li>
+										<br/>
+										<li>
 											Geburtstag
 										</li>
 										<br/>
@@ -119,11 +126,11 @@
 										</li>
 										<br/>
 										<li>
-											Ort
+											PLZ
 										</li>
 										<br/>
 										<li>
-											Platz
+											Ort
 										</li>
 										<br/>
 										<li>
@@ -138,6 +145,7 @@
 												echo "<li>" . $row['Anrede'] . "</li><br/>";
 												echo "<li>" . $row['Nachname'] . "</li><br/>";
 												echo "<li>" . $row['Vorname'] . "</li><br/>";
+												echo "<li>" . $row['EMail'] . "</li><br/>";
 												echo "<li>" . $row['Geburtsdatum'] . "</li><br/>";
 												echo "<li>" . $row['Nationalitaet'] . "</li><br/>";
 												echo "<li>" . $row['Telefon'] . "</li><br/>";
@@ -151,40 +159,12 @@
 												}
 											}
 											
-										?>
-										<?php
-
-											// Session starten
-											session_start ();
-
-											// Systemeinstellungen 
-											$id = "root"; 
-											$pw = ""; 
-											$host = "localhost"; 
-											$database = "itprofi"; 
-											$table = '';
-											
-											if($_SESSION['user_typ'] == 'person'){
-
-												$table = "register_personal"; 
-
-											}elseif($_SESSION['user_typ'] == 'company'){
-
-												$table = "register_company"; 
-											}
-											// Connection
-											$conn_id = mysql_connect($host,$id,$pw); 
-											if(!mysql_select_db($database,$conn_id))
-											{
-											  die('Could not connect: ' . mysql_error());
-											}
-
-											// query machen und anzeigen
+											// query neu machen
 											$sql = 'SELECT * 
 													FROM  ' . $table .
 													' WHERE EMail LIKE "' . $_SESSION['user_email'] . '";';
 											$result = mysql_query($sql); 
-											?>
+										?>
 									</ul>
 								</div>
 								<br/>
@@ -209,10 +189,93 @@
 										?>
 								</div>
 							</div>
+
+					<?php } elseif($_SESSION['user_typ'] == 'company'){ ?>
+							<div class="profile">
+								<div class="col-md-12">
+									<img src="../platzhalter-passfoto.gif" class="img-responsive pull-right" alt="Responsive image">
+								</div>
+								<div class="col-md-5 col-xs-3 putt-down20">
+									<ul class="list-unstyled">
+										<li>
+											Name
+										</li>
+										<br/>
+										<li>
+											E-Mail
+										</li>
+										<br/>
+										<li>
+											Telefon
+										</li>
+										<br/>
+										<li>
+											Strasse
+										</li>
+										<br/>
+										<li>
+											PLZ
+										</li>
+										<br/>
+										<li>
+											Ort
+										</li>
+										<br/>
+										
+									</ul>
+								</div> 
+								<div class="col-md-4 col-xs-3 putt-down20">
+									<ul class="list-unstyled">
+										<?php
+											while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
+												echo "<li>" . $row['Name'] . "</li><br/>";
+												echo "<li>" . $row['EMail'] . "</li><br/>";
+												echo "<li>" . $row['Telefon'] . "</li><br/>";
+												echo "<li>" . $row['Strasse'] . "</li><br/>";
+												echo "<li>" . $row['PLZ'] . "</li><br/>";
+												echo "<li>" . $row['Ort'] . "</li><br/>";
+												
+												if($row == false){
+													break;
+												}
+											}
+											
+											// query neu machen
+											$sql = 'SELECT * 
+													FROM  ' . $table .
+													' WHERE EMail LIKE "' . $_SESSION['user_email'] . '";';
+											$result = mysql_query($sql); 
+											?>
+									</ul>
+								</div>
+								<br/>
+								<br/>
+
+								<div class="col-md-10">
+									<h3>Berufsspezifischeinformationen</h3>
+									<br/>
+									<?php
+											while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
+												echo "<h5>Dienstleistungen</h5>";
+												echo "<p>" . $row['Dienstleistungen'] . "</p><br/>";
+												echo "<h5>auf der Suche nach...</h5>";
+												echo "<p>" . $row['SucheNach'] . "</p>";
+												if($row == false){
+													break;
+												}
+											}
+											mysql_close($conn_id);
+										?>
+								</div>
+							</div>
+
+						<?php } ?>
+			
 						</div>	
 					</div>
 				</div>
 			</div>
+
 			<br/>
 			<div class="footer">
 				<div class="container">

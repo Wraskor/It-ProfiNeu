@@ -28,7 +28,7 @@ if (mysql_num_rows ($result) > 0){
   $_SESSION["user_email"] = $data["EMail"];
   $_SESSION["user_typ"] = $data["ProfilTyp"];
   }
-  header ("Location: intern.php");
+  header ("Location: ../profile/profile.php");
 }
 else
 {
