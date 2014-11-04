@@ -124,67 +124,67 @@
 								</label>
 							<br>
 							<br>
-							<div <?php if($errors['name'] == '') echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
+							<div <?php if(!isset($errors['name'])) echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
 								<label class="col-sm-3 control-label" for="regname">*Name</label>
 								<div class="col-sm-9">
 									<input type="text" name="name" id="regname" placeholder="Name" <?php if(count($_POST) > 0) if($_POST['name'] != '') echo 'value="' . $_POST['name'] . '" ';?> />
 								</div>
 							</div>
-							<div <?php if($errors['vorname'] == '') echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
+							<div <?php if(!isset($errors['vorname'])) echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
 								<label class="col-sm-3 control-label" for="regvorname">*Vorname</label> 
 								<div class="col-sm-9">
 									<input type="text" name="vorname" id="regvorname" placeholder="Vorname" <?php if(count($_POST) > 0) if($_POST['vorname'] != '') echo 'value="' . $_POST['vorname'] . '" '; else echo 'class="has-error" ';?> />
 								</div>
 							</div>
-							<div <?php if($errors['bday'] == '') echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
+							<div <?php if(!isset($errors['bday'])) echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
 								<label class="col-sm-3 control-label" for="regbday">*Geburtsdatum</label> 
 								<div class="col-sm-9">
 									<input  type="date" name="bday"  id="regbday" placeholder="??.??.????" <?php if(count($_POST) > 0) if($_POST['bday'] != '') echo 'value="' . $_POST['bday'] . '" '; else echo 'class="has-error" ';?> />
 								</div>
 							</div>
-							<div <?php if($errors['nationality'] == '') echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
+							<div <?php if(!isset($errors['nationality'])) echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
 								<label class="col-sm-3 control-label" for="regnati">*Nationalität</label> 
 								<div class="col-sm-9">
 									<input  type="text" name="nationality" placeholder="Schweiz"  id="regnati" <?php if(count($_POST) > 0) if($_POST['nationality'] != '') echo 'value="' . $_POST['nationality'] . '" '; else echo 'class="error" ';?>/>
 								</div>
 							</div>
-							<div <?php if($errors['email'] == '') echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
+							<div <?php if(!isset($errors['email'])) echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
 								<label class="col-sm-3 control-label" for="regemail" >*E-mail</label>
 								<div class="col-sm-9">
 									<input name="email" id="regemail" type="email" placeholder="muster@email.com"   <?php if(count($_POST) > 0) if($_POST['email'] != '') echo 'value="' . $_POST['email'] . '" '; else echo 'class="has-error"';?>/>
 								</div>
 							</div>
-							<div <?php if($errors['password'] == '') echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
+							<div <?php if(!isset($errors['password'])) echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
 								<label class="col-sm-3 control-label" for="regpassword" >*Passwort</label>
 								<div class="col-sm-9">
 									<input  name="password" id="regpassword" type="password" placeholder="*********"   <?php if(count($_POST) > 0) if($_POST['password'] != '') echo 'value="' . $_POST['password'] . '" '; else echo 'class="has-error"';?>/>
 								</div>
 							</div>
-							<div <?php if($errors['tel'] == '') echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
+							<div class="form-group form-group-sm">
 								<label class="col-sm-3 control-label"  for="regtel" >Telefon</label>
 								<div class="col-sm-9">
 									<input name="tel" type="tel" id="regtel" placeholder="Telefon"   <?php if(count($_POST) > 0) if($_POST['tel'] != '') echo 'value="' . $_POST['tel'] . '" '; else echo 'class="has-error" ';?>/>
 								</div>
 							</div>
-							<div <?php if($errors['strasse'] == '') echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
+							<div <?php if(!isset($errors['strasse'])) echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
 								<label class="col-sm-3 control-label" for="regstrasse">*Strasse</label>
 								<div class="col-sm-9">
 									<input type="text" name="strasse" id="regstrasse" placeholder="Musterstrasse 20" <?php if(count($_POST) > 0) if($_POST['strasse'] != '') echo 'value="' . $_POST['strasse'] . '" '; else echo 'class="has-error" ';?> />
 								</div>
 							</div>
-							<div <?php if($errors['plz'] == '') echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
+							<div <?php if(!isset($errors['plz'])) echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
 								<label class="col-sm-3 control-label" for="regplz">*PLZ</label>
 								<div class="col-sm-9">
 									<input type="text" name="plz" id="regplz" placeholder="8400" <?php if(count($_POST) > 0) if($_POST['plz'] != '') echo 'value="' . $_POST['plz'] . '" '; else echo 'class="has-error" ';?> />
 								</div>
 							</div>
-							<div <?php if($errors['ort'] == '') echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
+							<div <?php if(!isset($errors['ort'])) echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
 								<label class="col-sm-3 control-label" for="regort">*Ort</label>
 								<div class="col-sm-9">
 									<input type="text" name="ort" id="regort" placeholder="Winterthur" <?php if(count($_POST) > 0) if($_POST['ort'] != '') echo 'value="' . $_POST['ort'] . '" '; else echo 'class="has-error" ';?> />
 								</div>
 							</div>
-							<div <?php if($errors['profileimg'] == '') echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
+							<div class="form-group form-group-sm">
 								<label class="col-sm-3 control-label" for="regbild">Profilbild: </label>
 								<div class="col-sm-9">
 									<input type="file" name="profileimg" id="regbild" placeholder="Name" <?php if(count($_POST) > 0) if($_POST['profileimg'] != '') echo 'value="' . $_POST['profileimg'] . '" '; else echo 'class="has-error" ';?> />
@@ -198,28 +198,28 @@
 							<h3>Berufsspezifische Infos</h3>
         					<br/>
         					<br/>
-							<div <?php if($errors['berufsbezeichnung'] == '') echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
+							<div <?php if(!isset($errors['berufsbezeichnung'])) echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
 									<label class="col-sm-4 control-label" for="regberuf">*Berufsbezeichnung</label>
 									<div class="col-sm-8">	
 										<input ype="text" name="berufsbezeichnung" placeholder="Informatik Applikationsentwickler" id="regberuf" <?php if(count($_POST) > 0) if($_POST['berufsbezeichnung'] != '') echo 'value="' . $_POST['berufsbezeichnung'] . '" '; else echo 'class="has-error" ';?> />
 									</div>
 								</div>
 								<br/>
-							 	<div <?php if($errors['arbeitgeber'] == '') echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
+							 	<div <?php if(!isset($errors['arbeitgeber'])) echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
 									<label class="col-sm-8 control-label" for="regarbeitgeber">*bisherige(r) Arbeitgeber</label>
 									<div class="col-sm-11">
 										<textarea name="arbeitgeber" id="regarbeitgeber" class="form-control" rows="3"><?php if(isset($_POST['arbeitgeber']))echo @$_POST['arbeitgeber']; ?></textarea>
 									</div>
 								</div>
 								<br/>
-							 	<div <?php if($errors['ausbildung'] == '') echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
+							 	<div <?php if(!isset($errors['ausbildung'])) echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
 									<label class="col-sm-8 control-label" for="reglehre">*Ausbildung/Lehre</label>
 									<div class="col-sm-11">
 										<textarea name="ausbildung"  id="reglehre" class="form-control" rows="3"><?php if(isset($_POST['ausbildung']))echo @$_POST['ausbildung']; ?></textarea>
 									</div>
 								</div>
 								<br/>
-							 	<strong <?php if (isset($errors['anrede'])) echo 'class="col-sm-5 control-label has-error" '; else echo "class='col-sm-5 control-label'";?>>*Student</strong>
+							 	<strong <?php if (isset($errors['student'])) echo 'class="col-sm-5 control-label has-error" '; else echo "class='col-sm-5 control-label'";?>>*Student</strong>
 								<label class="radio-inline col-sm-1 "> 
 									<input type="radio" name="student" value="Ja" <?php if(isset($_POST['student'])) if($_POST['student'] == 'Ja') echo 'checked ' ;?>/>
 									Ja
@@ -352,7 +352,7 @@
 					$_SESSION["user_id"] = 'none';
 					$_SESSION["user_email"] = $email;
 					$_SESSION["user_typ"] = 'person';
-					include ("../login/intern.php"); 
+					include ("../profile/profile.php"); 
 
 				}	
 			?>		

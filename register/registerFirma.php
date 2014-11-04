@@ -51,9 +51,6 @@
 			if (count($_POST) == 0 || count($errors) > 0){
 		
 		?>
-<pre>
-<?php print_r($errors);?>
-</pre>
 
 <html>
 <!-- Registrierung Seite ohne Inhalt -->
@@ -81,63 +78,63 @@
 						<h2>Register <small> Please Register or <a href="../login/login.php">login</a></small></h2>
 						<br/>											<!--Muss noch zu register.php#/firma geleitet werden -->
 						<form class="form-horizontal" role="form" action="<?= $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data" accept-charset="utf-8">
-							<div <?php if($errors['name'] == '') echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
+							<div <?php if(!isset($errors['name'])) echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
 								<label class="col-sm-3 control-label" for="regfname">*Name der Firma</label>
 								<div class="col-sm-9">
 									<input type="text" name="name" id="regfname" placeholder="Name" <?php if(count($_POST) > 0) if($_POST['name'] != '') echo 'value="' . $_POST['name'] . '" '; else echo 'class="has-error" ';?> />
 								</div>
 							</div>
-							<div <?php if($errors['tel'] == '') echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
+							<div class="form-group form-group-sm">
 								<label class="col-sm-3 control-label"  for="refgtel" >Telefon</label>
 								<div class="col-sm-9">
 									<input name="tel" type="tel" id="refgtel" placeholder="Telefon"   <?php if(count($_POST) > 0) if($_POST['tel'] != '') echo 'value="' . $_POST['tel'] . '" '; else echo 'class="has-error" ';?>/>
 								</div>
 							</div>
-							<div <?php if($errors['strasse'] == '') echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
+							<div <?php  if(!isset($errors['strasse'])) echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
 								<label class="col-sm-3 control-label" for="regstrasse">*Strasse</label>
 								<div class="col-sm-9">
 									<input type="text" name="strasse" id="regstrasse" placeholder="Musterstrasse 20" <?php if(count($_POST) > 0) if($_POST['strasse'] != '') echo 'value="' . $_POST['strasse'] . '" '; else echo 'class="has-error" ';?> />
 								</div>
 							</div>
-							<div <?php if($errors['plz'] == '') echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
+							<div <?php  if(!isset($errors['plz'])) echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
 								<label class="col-sm-3 control-label" for="regfplz">*PLZ</label>
 								<div class="col-sm-9">
 									<input type="text" name="plz" id="regfplz" placeholder="8400" <?php if(count($_POST) > 0) if($_POST['plz'] != '') echo 'value="' . $_POST['plz'] . '" '; else echo 'class="has-error" ';?> />
 								</div>
 							</div>
-							<div <?php if($errors['ort'] == '') echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
+							<div <?php  if(!isset($errors['ort'])) echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
 								<label class="col-sm-3 control-label" for="regfort">*Ort</label>
 								<div class="col-sm-9">
 									<input type="text" name="ort" id="regfort" placeholder="Winterthur" <?php if(count($_POST) > 0) if($_POST['ort'] != '') echo 'value="' . $_POST['ort'] . '" '; else echo 'class="has-error" ';?> />
 								</div>
 							</div>
-							<div <?php if($errors['email'] == '') echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
+							<div <?php  if(!isset($errors['email'])) echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
 								<label class="col-sm-3 control-label" for="regfemail" >*E-mail</label>
 								<div class="col-sm-9">
 									<input name="email" id="regfemail" type="email" placeholder="muster@email.com"   <?php if(count($_POST) > 0) if($_POST['email'] != '') echo 'value="' . $_POST['email'] . '" '; else echo 'class="has-error"';?>/>
 								</div>
 							</div>
-							<div <?php if($errors['password'] == '') echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
+							<div <?php  if(!isset($errors['password'])) echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
 								<label class="col-sm-3 control-label" for="regfpassword" >*Passwort</label>
 								<div class="col-sm-9">
 									<input  name="password" id="regfpassword" type="password" placeholder="*********"   <?php if(count($_POST) > 0) if($_POST['password'] != '') echo 'value="' . $_POST['password'] . '" '; else echo 'class="has-error"';?>/>
 								</div>
 							</div>
-							<div <?php if($errors['profileimg'] == '') echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
+							<div class="form-group form-group-sm">
 								<label class="col-sm-3 control-label" for="regbfild">Firmenlogo: </label>
 								<div class="col-sm-9">
 									<input type="file" name="profileimg" id="regfbild" placeholder="Name" <?php if(count($_POST) > 0) if($_POST['profileimg'] != '') echo 'value="' . $_POST['profileimg'] . '" '; else echo 'class="has-error" ';?> />
 									<p class="help-block">Bitte Firmenlogo Oder Bild Ihrer Firma max ...x....</p>
 								</div>
 							</div>
-							<div <?php if($errors['dienstleistungen'] == '') echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
+							<div <?php  if(!isset($errors['dienstleistungen'])) echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
 								<label class="col-sm-9 control-label" for="regdienst">*Beschreibung der Dienstleistungen</label>
 								<div class="col-sm-11">
 									<textarea name="dienstleistungen" id="regdienst" class="form-control" rows="3"><?php if(isset($_POST['dienstleistungen']))echo @$_POST['dienstleistungen']; ?> </textarea>
 								</div>
 							</div>
 							<br>
-							<div <?php if($errors['suchenach'] == '') echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
+							<div <?php  if(!isset($errors['suchenach'])) echo 'class="form-group form-group-sm"'; else echo 'class="form-group form-group-sm has-error" ';?>>
 								<label class="col-sm-9 control-label" for="regsuchenach">*Auf der Suche nach...</label>
 								<div class="col-sm-11">
 									<textarea name="suchenach" id="regsuchenach" class="form-control" rows="3"><?php if(isset($_POST['suchenach']))echo @$_POST['suchenach']; ?></textarea>
@@ -226,7 +223,7 @@
 					$_SESSION["user_id"] = 'none';
 					$_SESSION["user_email"] = $email;
 					$_SESSION["user_typ"] = 'company';
-					include ("../login/intern.php"); 
+					include ("../profile/profile.php"); 
 
 				}	
 			?>		
