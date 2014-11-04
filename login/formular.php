@@ -1,4 +1,8 @@
-<?php session_start (); ?>
+<?php 
+	session_start ();
+	$_SESSION["ungueltig"]==false;
+ ?>
+
 <!DOCTYPE HTML>
 <html>
   <head>
@@ -29,7 +33,7 @@
                 <input type="password" class="form-control" id="loginPassword" name="pwd" placeholder="Password">
               </div>
                 <?php 
-                  if (isset ($_REQUEST["fehler"])) 
+                  if ($_SESSION["ungueltig"]==true) 
                   { 
                     echo "<p>Die Zugangsdaten waren ungültig.</p>"; 
                   } 

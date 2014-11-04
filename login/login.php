@@ -1,6 +1,7 @@
 <?php
 // Session starten
 session_start ();
+ $_SESSION["ungueltig"] = false;
   
 // Datenbankverbindung aufbauen
 $connectionid = mysql_connect ("localhost", "root", "");
@@ -32,6 +33,7 @@ if (mysql_num_rows ($result) > 0){
 }
 else
 {
+  $_SESSION["ungueltig"] = true;
   header ("Location: formular.php?fehler=1");
 }
 ?>

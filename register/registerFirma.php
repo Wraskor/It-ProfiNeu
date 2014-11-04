@@ -33,7 +33,7 @@
 					$errors ['ort'] = 'Fuellen Sie Bitte das Feld "Ort" ein.';
 				
 				}
-				if(isset($_POST['dienstleistungen'])){
+				if($_POST['dienstleistungen'] == ''){
 					
 					$errors ['dienstleistungen'] = 'Fuellen Sie Bitte das Feld "Dienstleistungen" aus.';
 					
@@ -123,7 +123,7 @@
 							<div class="form-group form-group-sm">
 								<label class="col-sm-3 control-label" for="regbfild">Firmenlogo: </label>
 								<div class="col-sm-9">
-									<input type="file" name="profileimg" id="regfbild" placeholder="Name" <?php if(count($_POST) > 0) if($_POST['profileimg'] != '') echo 'value="' . $_POST['profileimg'] . '" '; else echo 'class="has-error" ';?> />
+									<input type="file" name="profileimg" id="regfbild" placeholder="Name"/>
 									<p class="help-block">Bitte Firmenlogo Oder Bild Ihrer Firma max ...x....</p>
 								</div>
 							</div>

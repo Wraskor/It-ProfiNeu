@@ -187,7 +187,7 @@
 							<div class="form-group form-group-sm">
 								<label class="col-sm-3 control-label" for="regbild">Profilbild: </label>
 								<div class="col-sm-9">
-									<input type="file" name="profileimg" id="regbild" placeholder="Name" <?php if(count($_POST) > 0) if($_POST['profileimg'] != '') echo 'value="' . $_POST['profileimg'] . '" '; else echo 'class="has-error" ';?> />
+									<input type="file" name="profileimg" id="regbild" placeholder="Name" />
 									<p class="help-block">Bitte Passfoto Oder Bild Ihres Gesichtes max ...x....</p>
 								
 								</div>
