@@ -23,10 +23,9 @@
 
 			    <!-- Collect the nav links, forms, and other content for toggling -->
 			    <div class="collapse navbar-collapse" id="navbar-collapse-1">
-			      <ul class="nav navbar-nav">
-			        <!--<li class="active"><a href="#">Link</a></li>
-			        <li><a href="#">Link</a></li>
-			      	-->
+			      <ul class="nav navbar-nav navbar-right">
+			        <li class="navlink"><a href="../profile/profile.php">Profi</a></li>
+			       	 <li class="navlink"><a href="../login/logout.php" type="submit">Logout</a></li>
 			      </ul>
 			    </div><!-- /.navbar-collapse -->
 			  </div><!-- /.container-fluid -->
@@ -115,7 +114,7 @@
 </html>
 <?php }else{
 	echo '<h2>Suchkriterien:</h2>';
-	echo '<table>';
+	echo '<table class="table table-hover">';
 	$a=0;
 	if(isset($_GET['search_berufsbezeichnung']) && $_GET['search_berufsbezeichnung']!=''){
 		echo '<tr><td>Berufsbezeichnung:</td><td>' . ucfirst($_GET['search_berufsbezeichnung']) . '</td></tr>';
@@ -156,8 +155,9 @@
 	require 'search_check_person.php';
 	$result = mysql_query($query);
 	if(!is_bool($result)){
-		echo '<form action="' . $_SERVER['PHP_SELF'] . '"><input class="button" type="submit" name="back" value="Neue Suche"/></form>';
-		echo '<table>';
+		echo '<div class="col-sm-12"';
+		echo '<form class="form-group form-group-sm"" action="' . $_SERVER['PHP_SELF'] . '"><a class="btn btn-default" type="submit" name="back" href="search_person.php">Neue Suche</a></form>';
+		echo '<br/><br/><table class="table table-hover">';
 		echo '<tr><th>Name</th><th>Vorname</th><th>E-Mail</th><th>Berufsbezeichnung</th><th>bisherig(e) Arbeitgeber</th><th>Ausbildung/Lehre</th><th>Student</th>';
 		echo '</tr>';
 		$such_ergebnisse = 0;
@@ -176,7 +176,7 @@
 			}
 		}
 		echo '<tr><th colspan=2>Suchergebnisse: ' . $such_ergebnisse . '</th>';
-	echo '</table>';
+	echo '</table></div>';
 	}else{
 		echo "<br/><br/>Datenbank ist entweder leer oder ein Fehler ist aufgetreten.";
 	}

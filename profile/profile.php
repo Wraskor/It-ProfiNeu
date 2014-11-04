@@ -1,9 +1,3 @@
-
-		<!--
-		<a href="profile.php">Allgemeines</a>
-		<a href="profile_galerie.php">Galerie</a>
-
-		-->
 <html DOCTYPE!>
 	<head>
 		<title>It-Profi</title>
@@ -64,10 +58,9 @@
 
 			    <!-- Collect the nav links, forms, and other content for toggling -->
 			    <div class="collapse navbar-collapse" id="navbar-collapse-1">
-			      <ul class="nav navbar-nav">
-			        <!--<li class="active"><a href="#">Link</a></li>
-			        <li><a href="#">Link</a></li>
-			      	-->
+			      <ul class="nav navbar-nav navbar-right">
+			        <li class="navlink"><a href="../search/search_person.php">Suche</a></li>
+			       	 <li class="navlink"><a href="../login/logout.php" type="submit">Logout</a></li>
 			      </ul>
 			    </div><!-- /.navbar-collapse -->
 			  </div><!-- /.container-fluid -->
@@ -78,9 +71,9 @@
 					<div class="row">
 						<div class="col-md-3 col-md-offset-">
 							<ul class="nav nav-pills nav-stacked poop">
-	 							<li class="active"><a href="#">Link</a></li>
-					        	<li><a href="#">Link</a></li>
-					        	<li><a href="#">Link</a></li>
+	 							<li class="active"><a href="#">Profil</a></li>
+					        	<li><a href="profile_galerie.php">Gallerie</a></li>
+					        	
 							</ul>
 						</div>
 						<div class="col-md-8">
@@ -290,10 +283,8 @@
 			</div>
 		</div>
 		
-		
-	  	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.js"></script>
-  		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-animate.js"></script>
-  		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-route.js"></script>
+		<script src="../bootstrap/js/bootstrap.min.js"></script>
+	  	
 
 
 	</body>

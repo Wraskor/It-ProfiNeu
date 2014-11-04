@@ -219,3 +219,17 @@ div.register-box {
 .icon-button:hover .icon-google-plus {
 	color: white;
 }
+
+.navlink {
+	margin-left: 20px;
+}
+
+.navlink:hover {
+	color: #55a5d9;
+	background-color: #eeeeee;
+}
+
+.navlink:active {
+	background-color: #428bca;
+	color: #fff;
+}
