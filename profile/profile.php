@@ -1,3 +1,6 @@
+<?php 
+include ("../checkuser.php"); 
+?> 
 <html DOCTYPE!>
 	<head>
 		<title>It-Profi</title>
@@ -72,8 +75,9 @@
 						<div class="col-md-3 col-md-offset-">
 							<ul class="nav nav-pills nav-stacked poop">
 	 							<li class="active"><a href="#">Profil</a></li>
+								<?php if($_SESSION['user_typ'] == 'person'){ ?>
 					        	<li><a href="profile_galerie.php">Gallerie</a></li>
-					        	
+								<?php } ?>
 							</ul>
 						</div>
 						<div class="col-md-8">

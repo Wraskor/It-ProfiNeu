@@ -33,7 +33,7 @@
                 <input type="password" class="form-control" id="loginPassword" name="pwd" placeholder="Password">
               </div>
                 <?php 
-                  if ($_SESSION["ungueltig"]==true) 
+                  if (isset($_REQUEST['fehler'])) 
                   { 
                     echo "<p>Die Zugangsdaten waren ungültig.</p>"; 
                   } 

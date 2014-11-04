@@ -1,3 +1,6 @@
+<?php 
+include ("../checkuser.php"); 
+?> 
 <html DOCTYPE!>
 	<head>
 		<title>It-Profi</title>

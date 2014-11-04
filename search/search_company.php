@@ -1,3 +1,6 @@
+<?php 
+include ("../checkuser.php"); 
+?> 
 <html DOCTYPE!>
 	<head>
 		<title>It-Profi</title>
@@ -23,10 +26,9 @@
 
 			    <!-- Collect the nav links, forms, and other content for toggling -->
 			    <div class="collapse navbar-collapse" id="navbar-collapse-1">
-			      <ul class="nav navbar-nav">
-			        <ul class="nav navbar-nav navbar-right">
-			        <li class="navlink"><a href="../profile/profile.php">Profi</a></li>
-			       	 <li class="navlink"><a href="../login/logout.php"type="submit">Logout</a></li>
+			      <ul class="nav navbar-nav navbar-right">
+			        <li class="navlink"><a href="../profile/profile.php">Profil</a></li>
+			       	 <li class="navlink"><a href="../login/logout.php" type="submit">Logout</a></li>
 			      </ul>
 			    </div><!-- /.navbar-collapse -->
 			  </div><!-- /.container-fluid -->

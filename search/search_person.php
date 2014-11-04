@@ -1,3 +1,6 @@
+<?php 
+include ("../checkuser.php"); 
+?> 
 <html DOCTYPE!>
 	<head>
 		<title>It-Profi</title>
@@ -24,7 +27,7 @@
 			    <!-- Collect the nav links, forms, and other content for toggling -->
 			    <div class="collapse navbar-collapse" id="navbar-collapse-1">
 			      <ul class="nav navbar-nav navbar-right">
-			        <li class="navlink"><a href="../profile/profile.php">Profi</a></li>
+			        <li class="navlink"><a href="../profile/profile.php">Profil</a></li>
 			       	 <li class="navlink"><a href="../login/logout.php" type="submit">Logout</a></li>
 			      </ul>
 			    </div><!-- /.navbar-collapse -->
@@ -35,7 +38,7 @@
 					<div class="row">
 						<div class="col-md-3 col-md-offset-">
 							<ul class="nav nav-pills nav-stacked poop">
-	 							<li class="active"><a href="#">nach Peron suchen...</a></li>
+	 							<li class="active"><a href="#">nach Person suchen...</a></li>
 					        	<li><a href="search_company.php">nach Firma suchen...</a></li>
 					        	
 							</ul>

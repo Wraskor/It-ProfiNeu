@@ -352,7 +352,7 @@
 					$_SESSION["user_id"] = 'none';
 					$_SESSION["user_email"] = $email;
 					$_SESSION["user_typ"] = 'person';
-					include ("../profile/profile.php"); 
+ 					header ("Location: ../profile/profile.php"); 
 
 				}	
 			?>		

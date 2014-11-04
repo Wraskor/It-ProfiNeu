@@ -34,6 +34,8 @@ if (mysql_num_rows ($result) > 0){
 else
 {
   $_SESSION["ungueltig"] = true;
+  session_unset (); 
+  session_destroy (); 
   header ("Location: formular.php?fehler=1");
 }
 ?>
