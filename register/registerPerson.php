@@ -189,7 +189,11 @@
 								<div class="col-sm-9">
 									<input type="file" name="profileimg" id="regbild" placeholder="Name" />
 									<p class="help-block">Bitte Passfoto Oder Bild Ihres Gesichtes max ...x....</p>
-								
+									<!--<pre>
+										<?php print_r($_FILES); 
+
+										?>
+									</pre>-->
 								</div>
 							</div>
 							<br/>
@@ -252,7 +256,7 @@
 
 			<?php
 				if(count($errors) > 0){
-					$dateityp = @GetImageSize($_FILES['profileimg']['tmp_name']);
+					/*$dateityp = @GetImageSize($_FILES['profileimg']['tmp_name']);
 						if($dateityp[2] != 0)
 						   {
 
@@ -273,7 +277,7 @@
 						    {
 						    	$errors ['profileimg'] =  "Bitte nur Bilder im Gif bzw. jpg Format hochladen";
 						    }
-
+					*/
 					echo '<h3 class="has-error" >Um das Formular korrekt abzusenden: </h3>';
 					
 					foreach ($errors as $error){
@@ -348,8 +352,89 @@
 										md5($password)."', '".
 										'person'. "')"; 
 					mysql_query($sql_log);
+
+					$sql = "SELECT ".
+					    "Id ".
+					  "FROM ".
+					    "login ".
+					  "WHERE ".
+					    "(EMail like '".$email."') AND ".
+					    "(Kennwort = '".md5($password)."')";
+					$result = mysql_query ($sql);
+
+					while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
+						$id = $row['Id'];						
+						if($row == false){
+							break;
+						}
+					}
+
+					//profilbild speichern
+					switch($_FILES['profileimg']['type']) {
+							case 'image/jpeg':
+								$type = "jpeg";
+								break;
+							case 'image/png':
+								$type = "png";
+								break;
+							default:
+								die('DIE3');
+								break;
+						}
+					$imagename = $id . "_profileimg." . $type;
+					@$_FILES['profileimg']['name'] = $imagename;
+					$temp_name = @$_FILES['profileimg']['tmp_name'];
+					$image = '../profile/profileimages/' . @$_FILES['profileimg']['name'];
+					$thumb = '../profile/profilethumbnails/' . @$_FILES['profileimg']['name'];
+				
+					if(is_uploaded_file(@$_FILES['profileimg']['tmp_name'])){
+						move_uploaded_file($temp_name, $image);
+						//copy($dateiname, $thumb);
+					
+					//Original-Bild
+					
+						switch($_FILES['profileimg']['type']) {
+							case 'image/jpeg':
+								$img = imagecreatefromjpeg($image);
+								break;
+							case 'image/png':
+								$img = imagecreatefrompng($image);
+								break;
+							default:
+								die('DIE2');
+								break;
+						}
+						
+						//Höhe und Breite des Orinigal-Bild
+						$width = imagesx($img);
+						$height = imagesy($img);
+						
+					//Thumbnail von Original-Bild
+						
+						//Höhe und Breite des Orinigal-Bild
+						$width2 = 150;
+						$height2 = 150;
+						
+						$img2 = imagecreatetruecolor($width2, $height2);
+						
+						imagecopyresized($img2, $img, 0,0,0,0, $width2, $height2, $width, $height);
+						
+						switch($_FILES['profileimg']['type']) {
+							case 'image/jpeg':
+								imagejpeg($img2, $thumb);
+								break;
+							case 'image/png':
+								imagepng($img2, $thumb);
+								break;
+							default:
+								die('DIE1');
+								break;
+						}
+						
+					}
+						
 					session_start ();
-					$_SESSION["user_id"] = 'none';
+					$_SESSION["user_id"] = $id;
 					$_SESSION["user_email"] = $email;
 					$_SESSION["user_typ"] = 'person';
  					header ("Location: ../profile/profile.php"); 

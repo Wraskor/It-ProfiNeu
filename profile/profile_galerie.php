@@ -1,6 +1,11 @@
 <?php 
 include ("../checkuser.php"); 
+session_start();
+if($_SESSION['user_typ'] == 'company'){ 
+	header ("Location: profile.php"); 
+}
 ?> 
+
 <html DOCTYPE!>
 	<head>
 		<title>It-Profi</title>
@@ -47,20 +52,91 @@ include ("../checkuser.php");
 						<div class="col-md-8">
 							<h1>Galerie</h1>
 							<div class="profile">
-								<table border="0" class="table">
-									<?php
+								<form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" accept-charset="utf-8">
+									<div class="form-group form-group-sm">
+										<div class="col-sm-9">
+											<input type="file" name="upload_img" id="regbild" placeholder="Name" />
+											<p class="help-block">Bitte Passfoto Oder Bild Ihres Gesichtes max ...x....</p>
+											<!--<pre>
+												<?php print_r($_FILES); 
+
+												?>
+											</pre>-->
+										</div>
+										<input class="btn btn-default button" type="submit" value="Senden" />
+
+									</div>
+								</form>
+								<?php
 									
-										$dir_thumbs = 'thumbnails/';
-										$dir_images = 'images/';
+									@mkdir('thumbnails/' . $_SESSION['user_id']);
+									@mkdir('images/' . $_SESSION['user_id']);
+
+									$temp_name = @$_FILES['upload_img']['tmp_name'];
+									$image = 'images/' . $_SESSION['user_id'] . '/' . @$_FILES['upload_img']['name'];
+									$thumb = 'thumbnails/' . $_SESSION['user_id'] . '/' . @$_FILES['upload_img']['name'];
+									
+									if(is_uploaded_file(@$_FILES['upload_img']['tmp_name'])){
+										move_uploaded_file($temp_name, $image);
+										//copy($dateiname, $thumb);
+									
+									//Original-Bild
+									
+										switch($_FILES['upload_img']['type']) {
+											case 'image/jpeg':
+												$img = imagecreatefromjpeg($image);
+												break;
+											case 'image/png':
+												$img = imagecreatefrompng($image);
+												break;
+											default:
+												die('DIE');
+												break;
+										}
+										
+										//Höhe und Breite des Orinigal-Bild
+										$width = imagesx($img);
+										$height = imagesy($img);
+										
+									//Thumbnail von Original-Bild
+										
+										//Höhe und Breite des Orinigal-Bild
+										$width2 = ($width/3);
+										$height2 = ($height/3);
+										
+										$img2 = imagecreatetruecolor($width2, $height2);
+										
+										imagecopyresized($img2, $img, 0,0,0,0, $width2, $height2, $width, $height);
+										
+										switch($_FILES['upload_img']['type']) {
+											case 'image/jpeg':
+												imagejpeg($img2, $thumb);
+												break;
+											case 'image/png':
+												imagepng($img2, $thumb);
+												break;
+											default:
+												die('DIE');
+												break;
+										}
+										
+									}
+								?>
+								<table border="0" class="table">
+									
+									<?php
+
+										$dir_thumbs = 'thumbnails/' . $_SESSION['user_id'] . '/';
+										$dir_images = 'images/' . $_SESSION['user_id'] . '/';
 										$counter = 0;
 										
 										if($dh = opendir($dir_images)){
 											
-											while(($filename = readdir($dh)) !== false){
+											while(($filename = readdir($dh)) != false){
 											
 												if(filetype($dir_images . $filename) == 'file'){
 												
-													$img = @imagecreatefromjpeg($dir_images . $filename);
+													/*$img = @imagecreatefromjpeg($dir_images . $filename);
 											
 													//Höhe und Breite des Orinigal-Bild
 														$width = @imagesx($img);
@@ -78,7 +154,7 @@ include ("../checkuser.php");
 													
 													@imagejpeg($img2, $dir_thumbs . $filename);
 													
-													$filename_lightbox = $filename;
+													*/$filename_lightbox = $filename;
 												
 													//Ändert den Dateinamen so das Umlaute, Dateitypen und Underscores ersetzt werden 
 													$filename_lightbox = str_replace('.jpg', '', $filename_lightbox);
@@ -89,7 +165,7 @@ include ("../checkuser.php");
 													$filename_lightbox = ucfirst($filename_lightbox);
 													
 													
-													if($counter>=3){
+													if($counter>=2){
 														
 														echo '<tr>';
 														$counter = 0;
@@ -112,7 +188,7 @@ include ("../checkuser.php");
 													echo '</td>';
 													$counter++;
 													
-													if($counter>=3){
+													if($counter>=2){
 														
 														echo '</tr>';
 														$counter = 0;

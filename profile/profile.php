@@ -86,7 +86,7 @@ include ("../checkuser.php");
 						<?php if($_SESSION['user_typ'] == 'person'){ ?>
 							<div class="profile">
 								<div class="col-md-12">
-									<img src="../platzhalter-passfoto.gif" class="img-responsive pull-right" alt="Responsive image">
+									<img src=<?php echo "profilethumbnails/" . $_SESSION['user_id'] . "_profileimg.jpeg"?> class="img-responsive pull-right" alt="Responsive image">
 								</div>
 								<div class="col-md-5 col-xs-3 putt-down20">
 									<ul class="list-unstyled">
@@ -139,6 +139,7 @@ include ("../checkuser.php");
 									<ul class="list-unstyled">
 										<?php
 											while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
+												$row['Id'] = $id;
 												echo "<li>" . $row['Anrede'] . "</li><br/>";
 												echo "<li>" . $row['Nachname'] . "</li><br/>";
 												echo "<li>" . $row['Vorname'] . "</li><br/>";
@@ -190,7 +191,7 @@ include ("../checkuser.php");
 					<?php } elseif($_SESSION['user_typ'] == 'company'){ ?>
 							<div class="profile">
 								<div class="col-md-12">
-									<img src="../platzhalter-passfoto.gif" class="img-responsive pull-right" alt="Responsive image">
+									<img src=<?php echo "'" . $id . "_profileimg.jpeg'"?> class="img-responsive pull-right" alt="Responsive image">
 								</div>
 								<div class="col-md-5 col-xs-3 putt-down20">
 									<ul class="list-unstyled">
